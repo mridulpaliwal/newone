@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        /* style.css */
+
+        body {
+            background-color: #FFB6C1;
+            /* Light Pink Background */
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #FFE4E1;
+            /* Lighter Pink Container */
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            width: 80%;
+            max-width: 900px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid #A73361;
+        }
+
+        h1 {
+            color: #000000;
+            /* Black */
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            margin-top: -5px;
+        }
+
+        .message {
+            color: #000000;
+            /* Black */
+            font-size: 1em;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #000000;
+            /* Black */
+            font-size: 1.3em;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            
+        }
+
+        button {
+            background-color: #C71585;
+            /* Medium Violet Red */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: rgb(225, 85, 85);
+            /* Dark Magenta */
+        }
+
+        .heart-image {
+            /* width: 100%; */
+            width: 350px;
+            margin: 20px auto;
+        }
+
+        .heart-image img {
+            width: 100%;
+            height: auto;
+            /* border-radius: 50%; Make it circular */
+            object-fit: cover;
+            /* clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); create a heart shape */
+        }
+
+        .yes {
+            /* padding: 15px 30px;
+            font-size: 18px;
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            position: fixed;
+            bottom: 20px;
+            right: 20px; */
+            transition: transform 0.3s;
+        }
+
+        .yes:hover {
+            transform: scale(1.1);
+            background-color: #ff1a62;
+        }
+        .no:hover {
+            transform: scale(1.1);
+            background-color: #ff1a62;
+        }
+
+        #heart-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Make sure hearts don't interfere with button clicks */
+        }
+
+        .heart {
+            color: red;
+            font-size: 2em;
+            position: absolute;
+            animation: fall 3s linear forwards;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -10%;
+                opacity: 1;
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>HAPPY VALENTINE'S DAY</h1>
+        <div class="message">
+            <p>Well to be really honest with you I don't know what to say here like generally I speak a lot but I'll try
+                alright.
+                Happy Valentine's Day, sunshine! I hope you're doing well and happy. I want to bring more joy to your
+                life and
+                make you smile. I love you, Sarmistha, because you're truly amazing—kind, caring, patient, and
+                beautiful. I
+                know you'll get many proposals today, but I promise I won't make you regret choosing me. Keeping it
+                short and simple. Take care!</p>
+        </div>
+        <div class="heart-image">
+            <img src="Untitled_design-3-2-removebg-preview.png" alt="Your Image">
+        </div>
+        <h2>SO WILL YOU BE MY VALENTINE SARMISTHA?</h2>
+        <div class="buttons">
+            <button class="yes" id="yes">YES</button>
+            <div id="heart-container"></div>
+            <button class="no" id="no">NO</button>
+        </div>
+    </div>
+    <script>
+        const yesbtn = document.getElementById('yes');
+        const nobtn = document.getElementById('no');
+        let clickcount = 0;
+        const texts = [
+            "Are u sure",
+            "Pakka se",
+            "I'm asking again",
+            "pakka 🥺"
+        ];
+
+        nobtn.addEventListener('click', () => {
+            if (clickcount < texts.length) {
+                nobtn.textContent = texts[clickcount];
+            }
+            clickcount++;
+
+            if (clickcount == 5) {
+                nobtn.remove();
+                yesbtn.textContent = "Shut Up & say YES";
+            }
+            else {
+                const currentsize = window.getComputedStyle(yesbtn).
+                    getPropertyValue('font-size');
+                const newsize = parseFloat(currentsize) * 1.5;
+                yesbtn.style.fontSize = newsize + 'px';
+
+            }
+        });
+
+        yesbtn.addEventListener('click', () => {
+            yesbtn.innerHTML = "🥰";
+            nobtn.remove();
+            yesbtn.style.fontSize = "3em";
+        })
+
+        const yesButton = document.getElementById('yes');
+        const heartContainer = document.getElementById('heart-container');
+
+        yesButton.addEventListener('click', () => {
+            // Create hearts on a timer
+            let heartInterval = setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️'; // Or any heart emoji
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDelay = Math.random() * 2 + "s";
+                heartContainer.appendChild(heart);
+
+                // Remove heart after animation completes to prevent memory leak
+                heart.addEventListener('animationend', () => heart.remove());
+            }, 100); // Adjust timing for more/fewer hearts
+
+            // Stop creating hearts after some time
+            setTimeout(() => {
+                clearInterval(heartInterval);
+            }, 5000); // Stop after 5 seconds
+        });
+
+
+    </script>
+</body>
+
+</html>

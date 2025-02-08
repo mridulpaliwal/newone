@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Project</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        .box {
+            position: fixed;
+            left: 30vw;
+            top: 100px;
+            height: 60vh;
+            width: 40vw;
+            background-color: rgb(245, 214, 214);
+            border: 3px solid red;
+            border-radius: 15px;
+        }
+
+        .welcome {
+            text-align: center;
+            margin: 20px 0px;
+            /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+            font-size: 2em;
+        }
+
+        .gif {
+            height: 350px;
+            position: relative;
+            left: 130px;
+            top: -45px;
+        }
+
+        .q {
+            position: relative;
+            top: -80px;
+            text-align: center;
+            font-size: 1.8em;
+        }
+
+        .initialinput {
+            /* align-items: center;
+            justify-content: center;
+            align-content: center;
+            justify-items: center; */
+            position: relative;
+            left: 110px;
+            top: -55px;
+        }
+
+        .input1 {
+            align-items: center;
+            height: 30px;
+            width: 250px;
+        }
+
+        .btn1 {
+            height: 35px;
+            width: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <p class="welcome">WELCOME</p>
+        <img class="gif" src="output-onlinegiftools.gif" alt="It was me welcoming you">
+        <p class="q">Please enter the passcode</p>
+        <div class="initialinput">
+            <input class="input1" type="password" id="passcodeInput" placeholder="Enter passcode">
+            <button class="btn1" onclick="checkPasscode()">Submit</button>
+        </div>
+    </div>
+    <script>
+        function checkPasscode() {
+            // Get the input value
+            const enteredPasscode = document.getElementById('passcodeInput').value;
+
+            // Replace '1234' with your actual passcode
+            const correctPasscode = "18052023";
+
+            if (enteredPasscode === correctPasscode) {
+                alert("Access granted! Redirecting...");
+                // Replace with your actual redirect URL
+                window.location.href = "successpage.html"; // Or your success page
+            } else {
+                alert("Incorrect passcode. Please try again.");
+                document.getElementById('passcodeInput').value = ""; // Clear input
+            }
+        }
+    </script>
+</body>
+
+</html>
